@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="respuesta" type="xs:string" />
+    <xs:element name="respuestas" type="trespuestas" />
+    <xs:element name="pregunta" type="tpregunta" />
+    <xs:element name="clave" type="xs:string" />
+    <xs:element name="claves" type="tclaves" />
+    <xs:element name="default" type="tdefault" />
+    <xs:element name="categoria" type="tcategoria" />
+
+
+    <xs:element name="organizacion">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="default" />
+                <xs:element ref="categoria" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+            
+            <xs:attribute name="nombre" use="required" />
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:complexType name="trespuestas">
+        <xs:sequence>
+            <xs:element ref="respuesta" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="tdefault">
+        <xs:sequence>
+            <xs:element ref="respuestas" />
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="tclaves">
+        <xs:sequence>
+            <xs:element ref="clave" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="tpregunta">
+        <xs:sequence>
+            <xs:element ref="claves" />
+            <xs:element ref="respuestas" />
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="tcategoria">
+        <xs:sequence>
+            <xs:element ref="pregunta" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="nombre" use="required" />
+    </xs:complexType>
+    
+</xs:schema>
+			
